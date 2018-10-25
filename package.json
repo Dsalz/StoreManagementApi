@@ -15,5 +15,10 @@
     "jsonwebtoken": "^8.3.0",
     "nodemon": "^1.18.4",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   }
 }

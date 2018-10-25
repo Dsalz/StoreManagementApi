@@ -15,20 +15,21 @@ module.exports = {
 
     verifyUserToken : (req, res, next) => {
 
-        const token = req.header.authorization || null;
+        const token = req.headers.authorization || null;
+
 
         if(!token){
-            res.status(403).json({message : "Forbidden"})
+           return res.status(403).json({message : "Forbidden"})
         }
 
-        jwt.verify(token.split(' ')[1] , secretKey , (err , user) =>{
-            if(err){
-                res.status(403).json({message : "Invalid Token"})
-            }
+            jwt.verify(token.split(' ')[1] , secretKey , (err , authData) =>{
+                if(err){
+                   return res.status(403).json({message : "Invalid Token"})
+                }
 
-            req.user = user;
-            next();
-        })
+                req.user = authData.user;
+                next();
+            })
     }
 
 }
